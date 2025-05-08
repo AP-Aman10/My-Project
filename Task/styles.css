@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+.light {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.dark {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid currentColor;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  cursor: pointer;
+  background: #f44336;
+  color: white;
+  border: none;
+  margin-top: 0.75rem;
+}
+
+button:hover {
+  background: #d32f2f;
+}
+
+.password-wrapper {
+  display: flex;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.password-wrapper button {
+  width: auto;
+  margin-left: 0.5rem;
+}
+
+.filters button {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.filters button.active {
+  background: #f44336;
+  color: white;
+}
+
+#taskList {
+  list-style: none;
+  padding: 0;
+}
+
+#taskList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-bottom: 1px solid #ccc;
+}
+
+#taskList li.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.hidden {
+  display: none;
+}
+
+small.error {
+  color: red;
+  font-size: 0.75rem;
+}

@@ -1,0 +1,42 @@
+<!-- <meta name="description" content="A simple and interactive Cricket Score Table web app to track runs, wickets, and overs in real-time. Built with HTML, CSS and JavaScript.">
+  <link rel="shortcut icon" href="Red Criminal 1.0-min.jpg" type="image/x-icon"> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Interactive live cricket score table for two teams with run, wicket, and over tracking. Built with HTML, CSS, and JavaScript." />
+    <title>Cricket Scoreboard</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="scoreboard">
+        <h1>🏏 Cricket Scoreboard</h1>
+
+        <div class="teams">
+            <div class="team" id="teamA">
+                <h2>Team A</h2>
+                <p><span class="score" id="scoreA">0/0</span> in <span id="oversA">0.0</span> overs</p>
+                <div class="controls">
+                    <button onclick="addRun('A')">+ Run</button>
+                    <button onclick="addWicket('A')">+ Wicket</button>
+                    <button onclick="addBall('A')">+ Ball</button>
+                </div>
+            </div>
+
+            <div class="team" id="teamB">
+                <h2>Team B</h2>
+                <p><span class="score" id="scoreB">0/0</span> in <span id="oversB">0.0</span> overs</p>
+                <div class="controls">
+                    <button onclick="addRun('B')">+ Run</button>
+                    <button onclick="addWicket('B')">+ Wicket</button>
+                    <button onclick="addBall('B')">+ Ball</button>
+                </div>
+            </div>
+        </div>
+        <button class="reset" onclick="resetMatch()">🔄 Reset Match</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

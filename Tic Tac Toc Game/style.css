@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tagesschrift&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Playfair Display", serif;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ff0000, #0044ff);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #120a0a;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+#game {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cell {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 4px groove rgb(50, 4, 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 100px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cell:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+#status {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+#reset {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #ff416c;
+  border: 4px groove black;
+  border-radius: 20px;
+  color: rgb(59, 12, 12);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#reset:hover {
+  background-color: #ff4b2b;
+}
+
+.imgbox {
+  margin-top: 20px;
+}
+
+.imgbox img {
+  width: 150px;
+  height: auto;
+}

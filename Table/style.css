@@ -1,0 +1,41 @@
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-image: url("https://img.freepik.com/free-photo/blue-smooth-wall-textured-background_53876-106133.jpg?t=st=1746256722~exp=1746260322~hmac=a068fb2ef9e8a786f1078d14c3d2b9ec51a2efcab92bbeb086189f6e4819c6a5&w=1380");
+}
+
+.h1 {
+    color: #00ffc8;
+    text-align: center;
+    border: 4px groove black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    border: 4px groove #000;
+    padding: 15px;
+    text-align: center;
+}
+
+th {
+    border: 1px solid #1a0ce3;
+} 
+
+.num {
+    color: rgb(0, 213, 255);
+    font-size: 20px;
+    width: 600;
+    border: 4px groove #000;
+    margin: 15px 0;
+}
+
+.num1 {
+    display: flex;
+    justify-self: center;
+    font-size: 22px;
+    font-weight: 600;
+    border: 4px groove black;
+    color: rgb(255, 0, 0);
+}
