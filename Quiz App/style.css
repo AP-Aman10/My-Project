@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+    background: linear-gradient(45deg, #0a0a0a, #3a4452);
+    background: linear-gradient(45deg, #260168, #03051a);
+}
+
+
+
+.start-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#start-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #673AB7;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease;
+}
+
+#start-btn:hover {
+    background: #512DA8;
+}
+
+
+.app {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    padding: 25px;
+    /* border: 2px solid #000; */
+    /* box-shadow: 0px 0px 30px #afafaf; */
+    /* box-shadow: 10px 10px #000000; */
+    display: none;
+}
+
+
+.header-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+#question-number {
+    background-color: #2f2f2f;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-inline: 10px;
+}
+
+
+.app h1 {
+    font-size: 18px;
+    font-weight: 600;
+    /* color: #002765; */
+    /* border-bottom: 1px solid #333; */
+    color: #fff;
+    margin-block: 15px;
+    padding: 25px;
+    background: linear-gradient(to right, #000000b9, #000000e0, #00000087);
+    background: linear-gradient(45deg, #230064, #5007aa);
+    background: #673AB7;
+    border-radius: 10px;
+    text-align: center;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+}
+
+.quiz {
+    padding: 20px 0;
+}
+
+
+
+.btn {
+    background: #f8f8f8;
+    color: #222;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    border: 1.5px solid #ccc;
+    padding: 15px 10px;
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 0 8px #d2d2d2;
+
+
+
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: both;
+    animation-delay: 0.1s;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+.btn:hover:not([disabled]) {
+    transition: all 0.6s;
+    color: #fff;
+    background: linear-gradient(to left, #da81f36b, #da81f344, #da81f320);
+    background: linear-gradient(to right, #010101a8, #000000e5, #010101a8)
+}
+
+.btn:disabled {
+    cursor: no-drop;
+}
+
+
+#next-btn {
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    width: 40%;
+    border: 0;
+    padding: 12px;
+    margin: 20px auto 0;
+    border-radius: 12px;
+    cursor: pointer;
+    display: None;
+    background: linear-gradient(to right, #000000da, #1a2524d8);
+    /* background: #00adee; */
+}
+
+
+.correct {
+    background: #66bb6a;
+    border: 1px solid #000;
+}
+
+.incorrect {
+    border: 1px solid #000;
+    background: #ff9393;
+}
+
+
+
+@media (max-width: 480px) {
+    .app {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 12px 8px;
+    }
+}
+
+
+
+
+
+
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+/* Experimental */
+
+.timer-box {
+    display: flex;
+    align-items: center;
+    background-color: #e0f0ff;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-family: 'Outfit', sans-serif;
+    width: fit-content;
+}
+
+.timer-box span {
+    margin-right: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.timer {
+    background-color: #2f2f2f;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+
+
+
+.time-progress {
+    width: 100%;
+    height: 6px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.time-bar {
+    height: 100%;
+    background-color: #e91e63;
+    width: 100%;
+    transition: width 1s linear;
+}

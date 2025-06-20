@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App - the Code School</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="start-screen" id="start-screen">
+        <button id="start-btn">Start Quiz</button>
+    </div>
+
+    <div id="app" class="app">
+        <div class="header-box">
+            <div class="timer-box">
+                <span>Time left</span>
+                <div class="timer" id="timer">10</div>
+            </div>
+            <p id="question-number"></p>
+        </div>
+
+        <div class="time-progress">
+            <div class="time-bar" id="time-bar"></div>
+        </div>
+
+        <h1 id="question">Simple Quiz</h1>
+        <div class="quiz">
+            <!-- <h2 id="question">Question goes here</h2> -->
+            <div id="answer-buttons"></div>
+            <button id="next-btn">Next</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
