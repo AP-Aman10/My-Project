@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("Solo2.0.jpeg");
+    background-size: cover;
+    background-position: center;
+    color: lightcyan;
+    font-family: 'Segoe UI', sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 30px;
+    background: linear-gradient(90deg, #1f2937, #111827);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--shadow);
+    transition: background 0.3s;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: lightcyan;
+    transition: border 0.3s, background 0.3s;
+}
+
+input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.output-group {
+    margin-top: 30px;
+    padding: 20px;
+    background: var(--input-bg);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+#themeBtn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 30px 20px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+}
+
+.dark {
+    background-color: #000;
+    color: lightcyan;
+}
+
+.dark input {
+    background-color: #1f2937;
+    color: lightcyan;
+    border-color: #555;
+}
+
+.dark .container {
+    background: linear-gradient(90deg, #111827, #0f172a);
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All-Time Best SI Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="theme-toggle">
+    </div>
+
+    <main class="container">
+        <h1>💸 Simple Interest Calculator</h1>
+
+        <form id="siForm">
+            <div class="input-group">
+                <label for="principal">Principal (₹)</label>
+                <input type="number" id="principal" min="0" required placeholder="Enter amount" />
+            </div>
+
+            <div class="input-group">
+                <label for="rate">Interest Rate (%)</label>
+                <input type="number" id="rate" min="0" required placeholder="Enter annual rate" />
+            </div>
+
+            <div class="input-group">
+                <label for="time">Time (Years)</label>
+                <input type="number" id="time" min="0" required placeholder="Enter number of years" />
+            </div>
+
+            <div class="output-group">
+                <p><strong>Interest:</strong> <i class="fa-solid fa-money-bill" style="color: #ff0000;"></i></i><span id="interest">₹0.00 </span></p>
+                <p><strong>Total Amount:</strong> <i class="fa-solid fa-money-bill" style="color: #ff0000;"></i></i><span id="total">₹0.00 </span></p>
+            </div>
+        </form>
+    </main>
+    <div class="theme-toggle" style="text-align: center; margin-top: 20px;">
+        <button id="themeBtn" style="padding: 10px 16px; font-size: 14px;">🌙 Dark Mode</button>
+    </div>
+    <script src="https://kit.fontawesome.com/1f86f40e89.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
