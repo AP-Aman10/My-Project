@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #e0f7fa;
+    background-image: url("Satoru Gojo2.0.png");
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 40px 20px 100px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 1.6;
+}
+
+input,
+button {
+    padding: 14px 18px;
+    font-size: 16px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input {
+    background-color: #1e293b;
+    color: #e0f7fa;
+    border: 1px solid #334155;
+    width: 250px;
+    max-width: 100%;
+}
+
+input:focus,
+input:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 0 6px #38bdf8;
+}
+
+button {
+    color: #ff0000;
+    background-color: #000000;
+    border: 4px groove #000000;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    color: #000000;
+    background-color: #ff0000;
+    transform: scale(1.03);
+}
+
+table {
+    margin: 40px auto;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+caption {
+    font-size: 26px;
+    margin-bottom: 16px;
+    font-weight: bold;
+    color: #a5f3fc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+th,
+td {
+    border: 1px solid #334155;
+    padding: 14px 12px;
+    color: #f0fdfa;
+    text-align: center;
+}
+
+th {
+    background-color: #10b981;
+    color: #f0fdf4;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+tr:hover {
+    background-color: #f08080;
+    transition: background-color 0.2s ease;
+}
+
+@media (max-width: 600px) {
+
+    input,
+    button {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    caption {
+        font-size: 22px;
+    }
+}
+
+footer {
+    background: linear-gradient(to right, #0f172a, #1e293b);
+    color: #94a3b8;
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 15px;
+    border-top: 1px solid #334155;
+}
+
+footer a {
+    color: #38bdf8;
+    text-decoration: none;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

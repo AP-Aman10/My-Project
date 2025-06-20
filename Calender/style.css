@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: url("Image6.0.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: background 0.5s ease;
+    color: lightcyan;
+    animation: amimateBg 4s linear infinite;
+}
+
+@keyframes amimateBg {
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.calendar-container {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    width: 100%;
+    max-width: 400px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.month-year {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.weekdays,
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 5px;
+}
+
+.weekdays div {
+    font-weight: 600;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.days div {
+    padding: 10px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.days div:hover {
+    background-color: #34495e;
+}
+
+.fade {
+    opacity: 0.4;
+}
+
+.today {
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+}

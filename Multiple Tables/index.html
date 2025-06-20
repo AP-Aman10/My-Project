@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiplication Table Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/1f86f40e89.js" crossorigin="anonymous" defer></script>
+</head>
+
+<body>
+  <header> 
+    <h1>
+      <i class="fa-solid fa-table-cells-large"></i>
+      Multiplication Table Generator
+    </h1>
+  </header>
+  <main>
+    <section class="input-section">
+      <i class="fa-brands fa-nutritionix fa-fade fa-lg"></i>
+      <input type="number" id="numberInput" placeholder="Enter a number" aria-label="Enter a number" />
+      <button onclick="generateTable()">Generate</button>
+    </section>
+    <section class="table-section">
+      <table id="multiplicationTable" aria-label="Multiplication Table">
+        <!-- Table will be populated dynamically -->
+      </table>
+    </section>
+  </main>
+  <footer>
+    Made with ❤️ by You — AP_BadgeP18
+    <a href="#">GitHub</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Contact</a>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
