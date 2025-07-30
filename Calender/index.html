@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Calendar - Advanced Event Management</title>
+    <meta name="description"
+        content="A beautiful, feature-rich calendar application with advanced event management, multiple views, and premium design.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app" class="app">
+        <!-- Calendar Header -->
+        <header class="calendar-header">
+            <div class="header-content">
+                <!-- Left Section - Navigation -->
+                <div class="header-left">
+                    <div class="nav-controls">
+                        <button id="prevBtn" class="nav-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h1 id="currentMonth" class="current-month">January 2025</h1>
+                        <button id="nextBtn" class="nav-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <button id="todayBtn" class="today-btn">Today</button>
+                </div>
+
+                <!-- Right Section - Controls -->
+                <div class="header-right">
+                    <!-- Search -->
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Search events..." class="search-input">
+                    </div>
+
+                    <!-- View Toggle -->
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="month">
+                            <i class="fas fa-th"></i>
+                            <span>Month</span>
+                        </button>
+                        <button class="view-btn" data-view="week">
+                            <i class="fas fa-calendar-week"></i>
+                            <span>Week</span>
+                        </button>
+                        <button class="view-btn" data-view="agenda">
+                            <i class="fas fa-list"></i>
+                            <span>Agenda</span>
+                        </button>
+                        <button class="view-btn" data-view="year">
+                            <i class="fas fa-calendar"></i>
+                            <span>Year</span>
+                        </button>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="darkModeBtn" class="action-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button id="exportBtn" class="action-btn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button id="importBtn" class="action-btn">
+                            <i class="fas fa-upload"></i>
+                        </button>
+                        <button id="createEventBtn" class="create-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>New Event</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Calendar Content -->
+        <main class="calendar-content">
+            <!-- Month View -->
+            <div id="monthView" class="calendar-view active">
+                <div class="calendar-grid">
+                    <!-- Weekday Headers -->
+                    <div class="weekday-headers">
+                        <div class="weekday">Sunday</div>
+                        <div class="weekday">Monday</div>
+                        <div class="weekday">Tuesday</div>
+                        <div class="weekday">Wednesday</div>
+                        <div class="weekday">Thursday</div>
+                        <div class="weekday">Friday</div>
+                        <div class="weekday">Saturday</div>
+                    </div>
+                    <!-- Calendar Days -->
+                    <div id="calendarDays" class="calendar-days"></div>
+                </div>
+            </div>
+
+            <!-- Week View -->
+            <div id="weekView" class="calendar-view">
+                <div class="week-container">
+                    <div id="weekHeader" class="week-header"></div>
+                    <div id="weekGrid" class="week-grid"></div>
+                </div>
+            </div>
+
+            <!-- Agenda View -->
+            <div id="agendaView" class="calendar-view">
+                <div id="agendaContent" class="agenda-content"></div>
+            </div>
+
+            <!-- Year View -->
+            <div id="yearView" class="calendar-view">
+                <div id="yearGrid" class="year-grid"></div>
+            </div>
+        </main>
+
+        <!-- Event Modal -->
+        <div id="eventModal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Create Event</h2>
+                    <button id="closeModal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="eventForm" class="event-form">
+                    <!-- Title -->
+                    <div class="form-group">
+                        <label for="eventTitle">
+                            <i class="fas fa-file-text"></i>
+                            Event Title
+                        </label>
+                        <input type="text" id="eventTitle" required placeholder="Enter event title">
+                    </div>
+
+                    <!-- Date and Time -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventDate">
+                                <i class="fas fa-calendar"></i>
+                                Date
+                            </label>
+                            <input type="date" id="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="startTime">
+                                <i class="fas fa-clock"></i>
+                                Start Time
+                            </label>
+                            <input type="time" id="startTime">
+                        </div>
+                        <div class="form-group">
+                            <label for="endTime">
+                                <i class="fas fa-clock"></i>
+                                End Time
+                            </label>
+                            <input type="time" id="endTime">
+                        </div>
+                    </div>
+
+                    <!-- Category and Priority -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventCategory">
+                                <i class="fas fa-tag"></i>
+                                Category
+                            </label>
+                            <select id="eventCategory">
+                                <option value="work">Work</option>
+                                <option value="personal">Personal</option>
+                                <option value="health">Health</option>
+                                <option value="social">Social</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventPriority">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Priority
+                            </label>
+                            <select id="eventPriority">
+                                <option value="low">Low Priority</option>
+                                <option value="medium">Medium Priority</option>
+                                <option value="high">High Priority</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-group">
+                        <label for="eventLocation">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Location
+                        </label>
+                        <input type="text" id="eventLocation" placeholder="Enter location (optional)">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="eventDescription">
+                            <i class="fas fa-file-text"></i>
+                            Description
+                        </label>
+                        <textarea id="eventDescription" rows="4"
+                            placeholder="Enter event description (optional)"></textarea>
+                    </div>
+
+                    <!-- Attendees -->
+                    <div class="form-group">
+                        <label for="attendeeInput">
+                            <i class="fas fa-users"></i>
+                            Attendees
+                        </label>
+                        <div class="attendee-input-container">
+                            <input type="email" id="attendeeInput" placeholder="Enter email address">
+                            <button type="button" id="addAttendeeBtn" class="add-btn">Add</button>
+                        </div>
+                        <div id="attendeesList" class="attendees-list"></div>
+                    </div>
+
+                    <!-- Recurring -->
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="isRecurring">
+                            <span class="checkmark"></span>
+                            <i class="fas fa-repeat"></i>
+                            Recurring Event
+                        </label>
+                        <select id="recurringPattern" class="recurring-select" style="display: none;">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn">
+                            <i class="fas fa-save"></i>
+                            <span id="saveButtonText">Create Event</span>
+                        </button>
+                        <button type="button" id="deleteEventBtn" class="delete-btn" style="display: none;">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Import File Input -->
+        <input type="file" id="importFile" accept=".json" style="display: none;">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

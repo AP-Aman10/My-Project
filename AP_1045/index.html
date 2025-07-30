@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google</title>
+    <meta name="description" content="Search the world's information, including webpages, images, videos and more.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <a href="#">About</a>
+                <a href="#">Store</a>
+            </div>
+            <div class="header-right">
+                <a href="https://mail.google.com" target="_blank">Gmail</a>
+                <a href="https://images.google.com" target="_blank">Images</a>
+                
+                <!-- Apps dropdown -->
+                <div style="position: relative;">
+                    <button class="apps-btn" onclick="toggleApps()" aria-label="Google apps">
+                        ⋮⋮⋮
+                    </button>
+                    <div class="dropdown hidden" id="appsDropdown">
+                        <div class="apps-grid">
+                            <a href="https://myaccount.google.com/?utm_source=OGB&utm_medium=app" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #4285f4, #34a853);"><img src="Red Criminal 1.0.jpg" alt="AP" class="apps-icon" style="width: 50px; height: 50px; border-radius: 50%; cursor: pointer;"></div>
+                                <span>Account</span>
+
+                            <a href="https://mail.google.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #ea4335, #fbbc05);">📧</div>
+                                <span>Gmail</span>
+                            </a>
+                            <a href="https://drive.google.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #4285f4, #34a853);">📁</div>
+                                <span>Drive</span>
+                            </a>
+                            <a href="https://calendar.google.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #4285f4, #ea4335);">📅</div>
+                                <span>Calendar</span>
+                            </a>
+                            <a href="https://photos.google.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #fbbc05, #ea4335);">📸</div>
+                                <span>Photos</span>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #ff0000, #cc0000);">📺</div>
+                                <span>YouTube</span>
+                            </a>
+                            <a href="https://maps.google.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #34a853, #4285f4);">🗺️</div>
+                                <span>Maps</span>
+                            </a>
+                            <a href="https://news.google.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #4285f4, #34a853);">📰</div>
+                                <span>News</span>
+                            </a>
+                            <a href="https://translate.google.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #4285f4, #fbbc05);">🔤</div>
+                                <span>Translate</span>
+                            </a>
+                            <a href="https://shopping.google.com" target="_blank" class="app-item">
+                                <div class="app-icon" style="background: linear-gradient(45deg, #fbbc05, #ea4335);">🛒</div>
+                                <span>Shopping</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile dropdown -->
+                <div style="position: relative;">
+                    <button class="profile-btn" onclick="toggleProfile()" aria-label="Google Account">
+
+                    </button>
+                    <div class="dropdown hidden" id="profileDropdown" style="width: 280px;">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <div class="imga" style="width: 80px; height: 80px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 32px; color: white; font-weight: bold;"><img src="AP_SenpaiP10-1.0.png" alt="" style="background-size: cover; background-position: center; background-repeat: no-repeat; width: 100px; height: 100px; border-radius: 50%"></div>
+                            <h3 style="color: #333; margin-bottom: 5px;">Your Account</h3>
+                            <p style="color: #666; font-size: 14px;">Manage your Google Account</p>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <a href="#" style="display: flex; align-items: center; padding: 12px; color: #333; text-decoration: none; border-radius: 10px; transition: all 0.3s ease;">
+                                ⚙️ <span style="margin-left: 10px;">Account settings</span>
+                            </a>
+                            <a href="#" style="display: flex; align-items: center; padding: 12px; color: #333; text-decoration: none; border-radius: 10px; transition: all 0.3s ease;">
+                                ❓ <span style="margin-left: 10px;">Help & feedback</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="main">
+            <!-- Google logo -->
+            <div class="logo">
+                <h1>
+                    <span class="g1">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span>
+                </h1>
+            </div>
+
+            <!-- Search form -->
+            <div class="search-container">
+                <form onsubmit="handleSearch(event)">
+                    <div class="search-box">
+                        <div class="search-icon">🔍</div>
+                        <input type="text" class="search-input" placeholder="Search Google or type a URL" id="searchInput" autocomplete="off">
+                        <div class="voice-icon" onclick="handleVoiceSearch()" title="Search by voice">🎤</div>
+                        <div class="camera-icon" onclick="handleImageSearch()" title="Search by image">📷</div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Search buttons -->
+            <div class="search-buttons">
+                <button class="search-btn" onclick="handleSearch()">Google Search</button>
+                <button class="search-btn" onclick="handleLucky()">I'm Feeling Lucky</button>
+            </div>
+
+            <!-- Language options -->
+            <div class="languages">
+                Google offered in:
+                <a href="#">Español</a>
+                <a href="#">Français</a>
+                <a href="#">Deutsch</a>
+                <a href="#">日本語</a>
+                <a href="#">العربية</a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-location">
+                <span>📍</span>
+                <span>United States</span>
+                <span>English</span>
+            </div>
+            <div class="footer-links">
+                <div class="footer-left">
+                    <a href="#">Advertising</a>
+                    <a href="#">Business</a>
+                    <a href="#">How Search works</a>
+                </div>
+                <div class="carbon-neutral">
+                    <span>🌱</span>
+                    <span>Carbon neutral since 2007</span>
+                </div>
+                <div class="footer-right">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Settings</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

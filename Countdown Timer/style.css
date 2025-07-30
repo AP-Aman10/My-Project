@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("Satoru\ Gojo2.0.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: lightcyan;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 40px;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+  padding: 40px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+}
+
+.timer {
+  background-color: rgba(225, 255, 255, 0.15);
+  padding: 30px;
+  margin: 0 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 100px;
+  max-width: 160px;
+  height: 100%;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.timer .time {
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+.timer .label {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px lightcyan;
+}
+
+.timer:hover {
+  background-color: rgba(225, 255, 255, 0.35);
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .countdown {
+    flex-wrap: wrap;
+  }
+
+  .timer {
+    max-width: 150px;
+    margin: 20px;
+  }
+
+  .timer .time {
+    font-size: 32px;
+  }
+
+  .timer .label {
+    font-size: 18px;
+  }
+}

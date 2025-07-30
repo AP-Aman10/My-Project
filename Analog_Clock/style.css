@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: lightcyan
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("Image9.0.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+h1 {
+  position: absolute;
+  top: 10px;
+  color: lightcyan;
+  font-size: 30px;
+  text-transform: uppercase;
+  background-color: black;
+}
+
+.container {
+  position: relative;
+}
+
+.clock {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px groove rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock span {
+  position: absolute;
+  transform: rotate(calc(30deg * var(--i)));
+  inset: 12px;
+  text-align: center;
+}
+
+.clock span b {
+  transform: rotate(calc(-30deg * var(--i)));
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.clock::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: lightcyan;
+  z-index: 2;
+}
+
+.hand {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.hand i {
+  position: absolute;
+  background-color: var(--clr);
+  width: 4px;
+  height: var(--h);
+  border-radius: 8px;
+}
+
+#currentTime {
+  position: absolute;
+  bottom: 10px;
+  color: lightcyan;
+  font-size: 20px;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  font-weight: bold;
+  animation: amimateBg 4s linear infinite;
+}
+
+@keyframes amimateBg {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}

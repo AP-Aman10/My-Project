@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBank India - Complete Banking Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-number {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .balance-hidden {
+            filter: blur(8px);
+            user-select: none;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Login Screen -->
+    <div id="loginScreen" class="min-h-screen gradient-bg flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md slide-in">
+            <div class="text-center mb-8">
+                <div class="bg-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="shield" class="w-8 h-8 text-white"></i>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800">SecureBank India</h1>
+                <p class="text-gray-600 mt-2">Your Trusted Banking Partner</p>
+            </div>
+
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Account Number</label>
+                    <div class="relative">
+                        <i data-lucide="credit-card" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+                        <input type="text" id="loginAccount"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent account-number"
+                            placeholder="Enter 12-digit account number" maxlength="12" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">PIN</label>
+                    <div class="relative">
+                        <i data-lucide="lock" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+                        <input type="password" id="loginPin"
+                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            placeholder="Enter 4-digit PIN" maxlength="4" required>
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Don't have an account?
+                    <button onclick="showRegister()"
+                        class="text-indigo-600 hover:text-indigo-800 font-semibold">Register Now</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Screen -->
+    <div id="registerScreen" class="hidden min-h-screen gradient-bg flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-2xl slide-in">
+            <div class="text-center mb-8">
+                <div class="bg-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="user-plus" class="w-8 h-8 text-white"></i>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800">Open New Account</h1>
+                <p class="text-gray-600 mt-2">Join SecureBank India Today</p>
+            </div>
+
+            <form id="registerForm" class="space-y-6">
+                <!-- Personal Information -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-lucide="user" class="w-5 h-5 mr-2"></i>
+                        Personal Information
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                            <input type="text" id="firstName"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                            <input type="text" id="lastName"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+                            <input type="date" id="dob"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                            <select id="gender"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Aadhaar Number</label>
+                            <input type="text" id="aadhaar"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                placeholder="XXXX-XXXX-XXXX" maxlength="14" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">PAN Number</label>
+                            <input type="text" id="pan"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                placeholder="ABCDE1234F" maxlength="10" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
+                        Contact Information
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
+                            <input type="tel" id="mobile"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Information -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i>
+                        Address Information
+                    </h3>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
+                            <input type="text" id="street"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                <input type="text" id="city"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                <select id="state"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    required>
+                                    <option value="">Select State</option>
+                                    <option value="andhra-pradesh">Andhra Pradesh</option>
+                                    <option value="arunachal-pradesh">Arunachal Pradesh</option>
+                                    <option value="assam">Assam</option>
+                                    <option value="bihar">Bihar</option>
+                                    <option value="chhattisgarh">Chhattisgarh</option>
+                                    <option value="goa">Goa</option>
+                                    <option value="gujarat">Gujarat</option>
+                                    <option value="haryana">Haryana</option>
+                                    <option value="himachal-pradesh">Himachal Pradesh</option>
+                                    <option value="jharkhand">Jharkhand</option>
+                                    <option value="karnataka">Karnataka</option>
+                                    <option value="kerala">Kerala</option>
+                                    <option value="madhya-pradesh">Madhya Pradesh</option>
+                                    <option value="maharashtra">Maharashtra</option>
+                                    <option value="manipur">Manipur</option>
+                                    <option value="meghalaya">Meghalaya</option>
+                                    <option value="mizoram">Mizoram</option>
+                                    <option value="nagaland">Nagaland</option>
+                                    <option value="odisha">Odisha</option>
+                                    <option value="punjab">Punjab</option>
+                                    <option value="rajasthan">Rajasthan</option>
+                                    <option value="sikkim">Sikkim</option>
+                                    <option value="tamil-nadu">Tamil Nadu</option>
+                                    <option value="telangana">Telangana</option>
+                                    <option value="tripura">Tripura</option>
+                                    <option value="uttar-pradesh">Uttar Pradesh</option>
+                                    <option value="uttarakhand">Uttarakhand</option>
+                                    <option value="west-bengal">West Bengal</option>
+                                    <option value="andaman-nicobar">Andaman and Nicobar Islands</option>
+                                    <option value="chandigarh">Chandigarh</option>
+                                    <option value="dadra-nagar-haveli">Dadra and Nagar Haveli and Daman and Diu</option>
+                                    <option value="delhi">Delhi</option>
+                                    <option value="jammu-kashmir">Jammu and Kashmir</option>
+                                    <option value="ladakh">Ladakh</option>
+                                    <option value="lakshadweep">Lakshadweep</option>
+                                    <option value="puducherry">Puducherry</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">PIN Code</label>
+                                <input type="text" id="pincode"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    maxlength="6" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Setup -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-lucide="credit-card" class="w-5 h-5 mr-2"></i>
+                        Account Setup
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
+                            <select id="accountType"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required>
+                                <option value="">Select Account Type</option>
+                                <option value="savings">Savings Account</option>
+                                <option value="current">Current Account</option>
+                                <option value="salary">Salary Account</option>
+                                <option value="fixed-deposit">Fixed Deposit</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Initial Deposit (₹)</label>
+                            <input type="number" id="initialDeposit"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                min="1000" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Create 4-Digit PIN</label>
+                            <input type="password" id="newPin"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                maxlength="4" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Confirm PIN</label>
+                            <input type="password" id="confirmPin"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                maxlength="4" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <input type="checkbox" id="terms"
+                        class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" required>
+                    <label for="terms" class="ml-2 text-sm text-gray-700">
+                        I agree to the <a href="#" class="text-indigo-600 hover:text-indigo-800">Terms and
+                            Conditions</a> and <a href="#" class="text-indigo-600 hover:text-indigo-800">Privacy
+                            Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Already have an account?
+                    <button onclick="showLogin()" class="text-indigo-600 hover:text-indigo-800 font-semibold">Sign
+                        In</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Banking Interface -->
+    <div id="bankingInterface" class="hidden min-h-screen bg-gray-50">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-indigo-600 w-10 h-10 rounded-lg flex items-center justify-center">
+                            <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h1 class="text-xl font-bold text-gray-900">SecureBank India</h1>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div class="text-right">
+                            <p class="text-sm font-medium text-gray-900" id="headerUserName">Welcome, User</p>
+                            <p class="text-xs text-gray-500 account-number" id="headerAccountNumber">Account:
+                                XXXXXXXXXXXX</p>
+                        </div>
+                        <button onclick="logout()"
+                            class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center space-x-2">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex space-x-8">
+                    <button onclick="showSection('dashboard')"
+                        class="nav-btn py-4 px-2 border-b-2 border-indigo-500 text-indigo-600 font-medium">Dashboard</button>
+                    <button onclick="showSection('accounts')"
+                        class="nav-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700">Accounts</button>
+                    <button onclick="showSection('transfer')"
+                        class="nav-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700">Transfer</button>
+                    <button onclick="showSection('transactions')"
+                        class="nav-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700">Transactions</button>
+                    <button onclick="showSection('profile')"
+                        class="nav-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700">Profile</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Account Overview</h2>
+                    <p class="text-gray-600">Welcome to your SecureBank India dashboard</p>
+                </div>
+
+                <!-- Account Summary Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-6 rounded-xl text-white card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-blue-100 text-sm">Primary Account</p>
+                                <p class="text-2xl font-bold" id="primaryBalance">₹0.00</p>
+                            </div>
+                            <div class="bg-blue-500 p-3 rounded-lg">
+                                <i data-lucide="credit-card" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-blue-100 text-sm account-number" id="primaryAccountNumber">XXXXXXXXXXXX</p>
+                            <button onclick="toggleBalance('primary')" class="text-blue-100 hover:text-white">
+                                <i data-lucide="eye" class="w-4 h-4" id="primaryEye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 p-6 rounded-xl text-white card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-green-100 text-sm">Savings Account</p>
+                                <p class="text-2xl font-bold" id="savingsBalance">₹0.00</p>
+                            </div>
+                            <div class="bg-green-500 p-3 rounded-lg">
+                                <i data-lucide="piggy-bank" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-green-100 text-sm account-number" id="savingsAccountNumber">XXXXXXXXXXXX</p>
+                            <button onclick="toggleBalance('savings')" class="text-green-100 hover:text-white">
+                                <i data-lucide="eye" class="w-4 h-4" id="savingsEye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-purple-600 to-purple-700 p-6 rounded-xl text-white card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <p class="text-purple-100 text-sm">Total Balance</p>
+                                <p class="text-2xl font-bold" id="totalBalance">₹0.00</p>
+                            </div>
+                            <div class="bg-purple-500 p-3 rounded-lg">
+                                <i data-lucide="wallet" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-purple-100 text-sm">All Accounts Combined</p>
+                            <button onclick="toggleBalance('total')" class="text-purple-100 hover:text-white">
+                                <i data-lucide="eye" class="w-4 h-4" id="totalEye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button onclick="showSection('transfer')"
+                            class="flex flex-col items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                            <i data-lucide="send" class="w-8 h-8 text-blue-600 mb-2"></i>
+                            <span class="text-sm font-medium text-blue-600">Send Money</span>
+                        </button>
+                        <button
+                            class="flex flex-col items-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+                            <i data-lucide="smartphone" class="w-8 h-8 text-green-600 mb-2"></i>
+                            <span class="text-sm font-medium text-green-600">Mobile Recharge</span>
+                        </button>
+                        <button
+                            class="flex flex-col items-center p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors">
+                            <i data-lucide="receipt" class="w-8 h-8 text-yellow-600 mb-2"></i>
+                            <span class="text-sm font-medium text-yellow-600">Pay Bills</span>
+                        </button>
+                        <button
+                            class="flex flex-col items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+                            <i data-lucide="credit-card" class="w-8 h-8 text-purple-600 mb-2"></i>
+                            <span class="text-sm font-medium text-purple-600">Cards</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Recent Transactions</h3>
+                        <button onclick="showSection('transactions')"
+                            class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">View All</button>
+                    </div>
+                    <div id="recentTransactions" class="space-y-4">
+                        <!-- Transactions will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accounts Section -->
+            <div id="accounts" class="section hidden">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">My Accounts</h2>
+                    <p class="text-gray-600">Manage all your bank accounts</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Primary Account Card -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <i data-lucide="credit-card" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Primary Account</h3>
+                                    <p class="text-sm text-gray-500" id="accountTypePrimary">Savings Account</p>
+                                </div>
+                            </div>
+                            <span
+                                class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Active</span>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Account Number</span>
+                                <span class="font-medium account-number" id="detailPrimaryAccount">XXXXXXXXXXXX</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Available Balance</span>
+                                <span class="font-bold text-xl text-gray-900" id="detailPrimaryBalance">₹0.00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">IFSC Code</span>
+                                <span class="font-medium">SECB0001234</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Branch</span>
+                                <span class="font-medium">Main Branch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Savings Account Card -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <i data-lucide="piggy-bank" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Savings Account</h3>
+                                    <p class="text-sm text-gray-500">High Interest Savings</p>
+                                </div>
+                            </div>
+                            <span
+                                class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Active</span>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Account Number</span>
+                                <span class="font-medium account-number" id="detailSavingsAccount">XXXXXXXXXXXX</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Available Balance</span>
+                                <span class="font-bold text-xl text-gray-900" id="detailSavingsBalance">₹0.00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Interest Rate</span>
+                                <span class="font-medium text-green-600">4.5% p.a.</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Maturity Date</span>
+                                <span class="font-medium">No Maturity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transfer Section -->
+            <div id="transfer" class="section hidden">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Transfer Money</h2>
+                    <p class="text-gray-600">Send money to other accounts securely</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <form id="transferForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">From Account</label>
+                                <select id="fromAccount"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    required>
+                                    <option value="">Select Account</option>
+                                    <option value="primary">Primary Account</option>
+                                    <option value="savings">Savings Account</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">To Account Number</label>
+                                <input type="text" id="toAccount"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent account-number"
+                                    placeholder="Enter 12-digit account number" maxlength="12" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Amount (₹)</label>
+                                <input type="number" id="transferAmount"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    min="1" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">IFSC Code</label>
+                                <input type="text" id="ifscCode"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                    placeholder="e.g., SECB0001234" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Beneficiary Name</label>
+                            <input type="text" id="beneficiaryName"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Remarks (Optional)</label>
+                            <textarea id="transferRemarks"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                rows="3" placeholder="Enter transfer purpose or remarks"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+                            Transfer Money
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Transactions Section -->
+            <div id="transactions" class="section hidden">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Transaction History</h2>
+                    <p class="text-gray-600">View all your account transactions</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <div
+                        class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
+                        <div class="flex items-center space-x-4">
+                            <select
+                                class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                <option>All Accounts</option>
+                                <option>Primary Account</option>
+                                <option>Savings Account</option>
+                            </select>
+                            <select
+                                class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                <option>Last 30 Days</option>
+                                <option>Last 3 Months</option>
+                                <option>Last 6 Months</option>
+                                <option>Last Year</option>
+                            </select>
+                        </div>
+                        <button
+                            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center space-x-2">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            <span>Download Statement</span>
+                        </button>
+                    </div>
+
+                    <div id="transactionsList" class="space-y-4">
+                        <!-- Transactions will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profile" class="section hidden">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">My Profile</h2>
+                    <p class="text-gray-600">View and manage your account information</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Personal Information -->
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <i data-lucide="user" class="w-5 h-5 mr-2"></i>
+                            Personal Information
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Full Name</span>
+                                <span class="font-medium" id="profileName">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Date of Birth</span>
+                                <span class="font-medium" id="profileDOB">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Gender</span>
+                                <span class="font-medium" id="profileGender">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Aadhaar Number</span>
+                                <span class="font-medium" id="profileAadhaar">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">PAN Number</span>
+                                <span class="font-medium" id="profilePAN">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
+                            Contact Information
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Email</span>
+                                <span class="font-medium" id="profileEmail">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Mobile</span>
+                                <span class="font-medium" id="profileMobile">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Address</span>
+                                <span class="font-medium text-right" id="profileAddress">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Information -->
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <i data-lucide="credit-card" class="w-5 h-5 mr-2"></i>
+                            Account Information
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Primary Account</span>
+                                <span class="font-medium account-number" id="profilePrimaryAccount">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Savings Account</span>
+                                <span class="font-medium account-number" id="profileSavingsAccount">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Account Type</span>
+                                <span class="font-medium" id="profileAccountType">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Branch</span>
+                                <span class="font-medium">Main Branch, Mumbai</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">IFSC Code</span>
+                                <span class="font-medium">SECB0001234</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Settings -->
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <i data-lucide="shield" class="w-5 h-5 mr-2"></i>
+                            Security Settings
+                        </h3>
+                        <div class="space-y-4">
+                            <button
+                                class="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-between">
+                                <span>Change PIN</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+                            </button>
+                            <button
+                                class="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-between">
+                                <span>Update Mobile Number</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+                            </button>
+                            <button
+                                class="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-between">
+                                <span>Enable Two-Factor Authentication</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Global variables
+        let currentUser = null;
+        let balanceVisible = {
+            primary: true,
+            savings: true,
+            total: true
+        };
+
+        // Utility functions
+        function generateAccountNumber() {
+            return Math.floor(100000000000 + Math.random() * 900000000000).toString();
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR'
+            }).format(amount);
+        }
+
+        function formatDate(date) {
+            return new Date(date).toLocaleDateString('en-IN');
+        }
+
+        // Navigation functions
+        function showLogin() {
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('registerScreen').classList.add('hidden');
+            document.getElementById('bankingInterface').classList.add('hidden');
+        }
+
+        function showRegister() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('registerScreen').classList.remove('hidden');
+            document.getElementById('bankingInterface').classList.add('hidden');
+        }
+
+        function showBanking() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('registerScreen').classList.add('hidden');
+            document.getElementById('bankingInterface').classList.remove('hidden');
+            loadUserData();
+            showSection('dashboard');
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show selected section
+            document.getElementById(sectionName).classList.remove('hidden');
+
+            // Update navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('border-indigo-500', 'text-indigo-600');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+            event.target.classList.add('border-indigo-500', 'text-indigo-600');
+
+            // Load section-specific data
+            if (sectionName === 'transactions') {
+                loadTransactions();
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            showLogin();
+        }
+
+        // Balance visibility toggle
+        function toggleBalance(type) {
+            balanceVisible[type] = !balanceVisible[type];
+            updateBalanceDisplay();
+
+            const eyeIcon = document.getElementById(type + 'Eye');
+            eyeIcon.setAttribute('data-lucide', balanceVisible[type] ? 'eye' : 'eye-off');
+            lucide.createIcons();
+        }
+
+        function updateBalanceDisplay() {
+            if (currentUser) {
+                const primaryBalance = document.getElementById('primaryBalance');
+                const savingsBalance = document.getElementById('savingsBalance');
+                const totalBalance = document.getElementById('totalBalance');
+
+                primaryBalance.textContent = balanceVisible.primary ?
+                    formatCurrency(currentUser.primaryBalance) : '••••••';
+                savingsBalance.textContent = balanceVisible.savings ?
+                    formatCurrency(currentUser.savingsBalance) : '••••••';
+                totalBalance.textContent = balanceVisible.total ?
+                    formatCurrency(currentUser.primaryBalance + currentUser.savingsBalance) : '••••••';
+
+                // Update detailed balance displays
+                document.getElementById('detailPrimaryBalance').textContent =
+                    formatCurrency(currentUser.primaryBalance);
+                document.getElementById('detailSavingsBalance').textContent =
+                    formatCurrency(currentUser.savingsBalance);
+            }
+        }
+
+        // Load user data into interface
+        function loadUserData() {
+            if (currentUser) {
+                // Header
+                document.getElementById('headerUserName').textContent =
+                    `Welcome, ${currentUser.firstName} ${currentUser.lastName}`;
+                document.getElementById('headerAccountNumber').textContent =
+                    `Account: ${currentUser.primaryAccount}`;
+
+                // Account numbers
+                document.getElementById('primaryAccountNumber').textContent = currentUser.primaryAccount;
+                document.getElementById('savingsAccountNumber').textContent = currentUser.savingsAccount;
+                document.getElementById('detailPrimaryAccount').textContent = currentUser.primaryAccount;
+                document.getElementById('detailSavingsAccount').textContent = currentUser.savingsAccount;
+
+                // Profile information
+                document.getElementById('profileName').textContent =
+                    `${currentUser.firstName} ${currentUser.lastName}`;
+                document.getElementById('profileDOB').textContent = formatDate(currentUser.dob);
+                document.getElementById('profileGender').textContent =
+                    currentUser.gender.charAt(0).toUpperCase() + currentUser.gender.slice(1);
+                document.getElementById('profileAadhaar').textContent = currentUser.aadhaar;
+                document.getElementById('profilePAN').textContent = currentUser.pan;
+                document.getElementById('profileEmail').textContent = currentUser.email;
+                document.getElementById('profileMobile').textContent = currentUser.mobile;
+                document.getElementById('profileAddress').textContent =
+                    `${currentUser.street}, ${currentUser.city}, ${currentUser.state} - ${currentUser.pincode}`;
+                document.getElementById('profilePrimaryAccount').textContent = currentUser.primaryAccount;
+                document.getElementById('profileSavingsAccount').textContent = currentUser.savingsAccount;
+                document.getElementById('profileAccountType').textContent =
+                    currentUser.accountType.charAt(0).toUpperCase() + currentUser.accountType.slice(1);
+                document.getElementById('accountTypePrimary').textContent =
+                    currentUser.accountType.charAt(0).toUpperCase() + currentUser.accountType.slice(1);
+
+                updateBalanceDisplay();
+                loadRecentTransactions();
+            }
+        }
+
+        // Load recent transactions
+        function loadRecentTransactions() {
+            const container = document.getElementById('recentTransactions');
+            const transactions = currentUser.transactions.slice(0, 5);
+
+            container.innerHTML = transactions.map(transaction => `
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'} rounded-full flex items-center justify-center">
+                            <i data-lucide="${transaction.type === 'credit' ? 'arrow-down-right' : 'arrow-up-right'}" 
+                               class="w-5 h-5 ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">${transaction.description}</p>
+                            <p class="text-sm text-gray-500">${formatDate(transaction.date)}</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}">
+                            ${transaction.type === 'credit' ? '+' : '-'}${formatCurrency(Math.abs(transaction.amount))}
+                        </p>
+                        <p class="text-sm text-gray-500">${transaction.account}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Load all transactions
+        function loadTransactions() {
+            const container = document.getElementById('transactionsList');
+            const transactions = currentUser.transactions;
+
+            container.innerHTML = transactions.map(transaction => `
+                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 ${transaction.type === 'credit' ? 'bg-green-100' : 'bg-red-100'} rounded-full flex items-center justify-center">
+                            <i data-lucide="${transaction.type === 'credit' ? 'arrow-down-right' : 'arrow-up-right'}" 
+                               class="w-6 h-6 ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">${transaction.description}</p>
+                            <p class="text-sm text-gray-500">${transaction.account} • ${formatDate(transaction.date)}</p>
+                            <p class="text-xs text-gray-400">Ref: ${transaction.reference}</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-bold text-lg ${transaction.type === 'credit' ? 'text-green-600' : 'text-red-600'}">
+                            ${transaction.type === 'credit' ? '+' : '-'}${formatCurrency(Math.abs(transaction.amount))}
+                        </p>
+                        <p class="text-sm text-gray-500">Balance: ${formatCurrency(transaction.balance)}</p>
+                        <span class="inline-block px-2 py-1 text-xs font-medium rounded-full ${transaction.status === 'completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                }">${transaction.status}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // Form handlers
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const accountNumber = document.getElementById('loginAccount').value;
+            const pin = document.getElementById('loginPin').value;
+
+            // Simple validation (in real app, this would be server-side)
+            const storedUser = localStorage.getItem('bankUser_' + accountNumber);
+            if (storedUser) {
+                const user = JSON.parse(storedUser);
+                if (user.pin === pin) {
+                    currentUser = user;
+                    showBanking();
+                } else {
+                    alert('Invalid PIN. Please try again.');
+                }
+            } else {
+                alert('Account not found. Please check your account number.');
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Validate PIN confirmation
+            const pin = document.getElementById('newPin').value;
+            const confirmPin = document.getElementById('confirmPin').value;
+
+            if (pin !== confirmPin) {
+                alert('PINs do not match. Please try again.');
+                return;
+            }
+
+            // Create new user
+            const primaryAccount = generateAccountNumber();
+            const savingsAccount = generateAccountNumber();
+            const initialDeposit = parseFloat(document.getElementById('initialDeposit').value);
+
+            const newUser = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                dob: document.getElementById('dob').value,
+                gender: document.getElementById('gender').value,
+                aadhaar: document.getElementById('aadhaar').value,
+                pan: document.getElementById('pan').value,
+                email: document.getElementById('email').value,
+                mobile: document.getElementById('mobile').value,
+                street: document.getElementById('street').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pincode: document.getElementById('pincode').value,
+                accountType: document.getElementById('accountType').value,
+                pin: pin,
+                primaryAccount: primaryAccount,
+                savingsAccount: savingsAccount,
+                primaryBalance: initialDeposit,
+                savingsBalance: 0,
+                transactions: [
+                    {
+                        id: 1,
+                        type: 'credit',
+                        amount: initialDeposit,
+                        description: 'Initial Deposit',
+                        account: 'Primary Account',
+                        date: new Date().toISOString(),
+                        balance: initialDeposit,
+                        reference: 'TXN' + Date.now(),
+                        status: 'completed'
+                    }
+                ]
+            };
+
+            // Store user data
+            localStorage.setItem('bankUser_' + primaryAccount, JSON.stringify(newUser));
+            currentUser = newUser;
+
+            alert(`Account created successfully!\nYour Primary Account Number: ${primaryAccount}\nYour Savings Account Number: ${savingsAccount}\nPlease save these numbers for future reference.`);
+            showBanking();
+        });
+
+        document.getElementById('transferForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const fromAccount = document.getElementById('fromAccount').value;
+            const toAccount = document.getElementById('toAccount').value;
+            const amount = parseFloat(document.getElementById('transferAmount').value);
+            const beneficiaryName = document.getElementById('beneficiaryName').value;
+            const remarks = document.getElementById('transferRemarks').value;
+
+            // Check balance
+            const availableBalance = fromAccount === 'primary' ?
+                currentUser.primaryBalance : currentUser.savingsBalance;
+
+            if (amount > availableBalance) {
+                alert('Insufficient balance for this transfer.');
+                return;
+            }
+
+            // Process transfer
+            if (fromAccount === 'primary') {
+                currentUser.primaryBalance -= amount;
+            } else {
+                currentUser.savingsBalance -= amount;
+            }
+
+            // Add transaction
+            const newTransaction = {
+                id: currentUser.transactions.length + 1,
+                type: 'debit',
+                amount: -amount,
+                description: `Transfer to ${beneficiaryName}`,
+                account: fromAccount === 'primary' ? 'Primary Account' : 'Savings Account',
+                date: new Date().toISOString(),
+                balance: fromAccount === 'primary' ? currentUser.primaryBalance : currentUser.savingsBalance,
+                reference: 'TXN' + Date.now(),
+                status: 'completed'
+            };
+
+            currentUser.transactions.unshift(newTransaction);
+
+            // Update stored data
+            localStorage.setItem('bankUser_' + currentUser.primaryAccount, JSON.stringify(currentUser));
+
+            alert(`Transfer of ${formatCurrency(amount)} completed successfully to ${beneficiaryName}!`);
+
+            // Reset form and update display
+            document.getElementById('transferForm').reset();
+            updateBalanceDisplay();
+            loadRecentTransactions();
+        });
+
+        // Format account number input
+        document.getElementById('loginAccount').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            e.target.value = value;
+        });
+
+        document.getElementById('toAccount').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            e.target.value = value;
+        });
+
+        // Format Aadhaar number
+        document.getElementById('aadhaar').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3');
+            e.target.value = value;
+        });
+
+        // Format PAN number
+        document.getElementById('pan').addEventListener('input', function (e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+
+        // Format PIN inputs
+        document.querySelectorAll('input[type="password"]').forEach(input => {
+            input.addEventListener('input', function (e) {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+        });
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function () {
+            lucide.createIcons();
+            showLogin();
+        });
+    </script>
+</body>
+
+</html>
